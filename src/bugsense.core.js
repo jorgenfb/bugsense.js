@@ -1,17 +1,17 @@
 var bugsense;
 (function ( root, factory ) {
-    if ( typeof define === 'function' && define.amd ) {
-        // AMD. Register as an anonymous module.
-        define(function () {
-            // Also create a global in case some scripts
-            // that are loaded still are looking for
-            // a global even when an AMD loader is in use.
-            return ( root.Bugsense = factory() );
-        });
-    } else {
-        // Browser globals
-        root.Bugsense = factory();
-    }
+  // Expose global variable even if the
+  // used as an AMD module. There may be scripts
+  // still looking for a global. It is also needed for
+  // to extend the Bugsense.prototype (bugsense.gae.js)
+  root.Bugsense = factory();
+
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD. Register as an anonymous module.
+    define(function () {
+      return root.Bugsense;
+    });
+  }
 }( this, function () {
   /**
    * Constructor for the Bugsense instance
